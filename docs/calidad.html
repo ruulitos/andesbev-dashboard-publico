@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AndesBev · Calidad de datos y logística inversa</title>
+<meta name="description" content="Dashboard de diagnóstico de la cadena de suministro AndesBev SpA, piloto Coquimbo-La Serena.">
+<link rel="stylesheet" href="assets/app.css"><script src="data/datos.js"></script><script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script></head>
+<body data-modo="sitio" data-page="calidad">
+<header class="top"><div class="marca"><strong>AndesBev SpA</strong><span>Diagnóstico · Piloto Coquimbo–La Serena</span></div>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+<nav id="nav"><a href="index.html" data-nav="index">Inicio</a><a href="demanda.html" data-nav="demanda">Demanda</a><a href="portafolio.html" data-nav="portafolio">Portafolio</a><a href="clientes.html" data-nav="clientes">Clientes y territorio</a><a href="flota.html" data-nav="flota">Flota y transporte</a><a href="calidad.html" data-nav="calidad">Calidad de datos y logística inversa</a><a href="diseno.html" data-nav="diseno">Diseño</a></nav></header>
+<div class="barra"><div class="filtros" role="group" aria-label="Filtros globales">
+  <label>Año <select id="f-anio"><option value="Todos">Todos</option><option>2023</option><option>2024</option><option>2025</option></select></label>
+  <label>Categoría <select id="f-cat"><option value="Todas">Todas</option><option>Gaseosas</option><option>Cervezas</option><option>Aguas</option><option>Piscos y Licores</option><option>Vinos</option></select></label></div><p class="alcance" id="alcance"></p></div>
+<main class="pagina" data-page="calidad" id="p-calidad"><h1>Calidad de datos y logística inversa</h1><section class="bloque"><h2>Calidad de la información</h2><div class="grid">
+<article class="card ancho" id="c-calidad" data-ids="C14.1 C14">
+  <header class="card-head">
+    <h3>Consolidado de auditorías</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  
+  <div class="extra" id="x-calidad"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-calidad"></div></details>
+  <aside class="hilo" id="h-calidad"></aside>
+  <footer class="fuente">Fuente: h14_consolidado_calidad_informacion.csv</footer>
+</article>
+<article class="card " id="c-cascada" data-ids="C1.1">
+  <header class="card-head">
+    <h3>Facturación → venta efectiva → venta neta</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-cascada" style="height:340px" role="img" aria-label="Facturación → venta efectiva → venta neta"></div>
+  <div class="extra" id="x-cascada"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-cascada"></div></details>
+  <aside class="hilo" id="h-cascada"></aside>
+  <footer class="fuente">Fuente: h01_cascada_facturacion_demanda_flujo.csv</footer>
+</article>
+<article class="card " id="c-geo" data-ids="C14.1 C8.1">
+  <header class="card-head">
+    <h3>Cobertura de georreferenciación</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-geo" style="height:340px" role="img" aria-label="Cobertura de georreferenciación"></div>
+  <div class="extra" id="x-geo"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-geo"></div></details>
+  <aside class="hilo" id="h-geo"></aside>
+  <footer class="fuente">Fuente: auditoria_h08_exclusiones_geo.csv</footer>
+</article>
+<article class="card " id="c-huerf" data-ids="C1">
+  <header class="card-head">
+    <h3>Productos huérfanos (sin maestra) por clasificación</h3>
+    <div class="badges"><span class="badge badge-dato">Dato real</span></div>
+  </header>
+  
+  
+  <div class="extra" id="x-huerf"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-huerf"></div></details>
+  <aside class="hilo" id="h-huerf"></aside>
+  <footer class="fuente">Fuente: h01_huerfanos_por_clasificacion.csv</footer>
+</article>
+<article class="card ancho" id="c-decisiones" data-ids="A4 C2.1">
+  <header class="card-head">
+    <h3>Decisiones documentadas</h3>
+    <div class="badges"><span class="badge badge-dato">Dato real</span></div>
+  </header>
+  
+  
+  <div class="extra" id="x-decisiones"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-decisiones"></div></details>
+  <aside class="hilo" id="h-decisiones"></aside>
+  <footer class="fuente">Fuente: auditoria_decision_codigo_451555.csv; comparacion_cifras_clave_actual_vs_corregido.csv</footer>
+</article>
+<article class="card ancho" id="c-codigos" data-ids="C11.1">
+  <header class="card-head">
+    <h3>Clasificación de los 68 códigos de facturación</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  
+  <div class="extra" id="x-codigos"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-codigos"></div></details>
+  <aside class="hilo" id="h-codigos"></aside>
+  <footer class="fuente">Fuente: h11_clasificacion_codigos_facturacion.csv</footer>
+</article></div></section><section class="bloque"><h2>Logística inversa</h2><div class="grid">
+<article class="card ancho" id="c-env-mes" data-ids="C11.1">
+  <header class="card-head">
+    <h3>Tasa de retorno documentada de envases por mes</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-anio">Filtro año</span></div>
+  </header>
+  <p class="nota">CJ = cajas de botellas retornables; CU = casilleros, keg y botellas sueltas. No se suman entre sí.</p>
+  <div class="plot" id="g-env-mes" style="height:340px" role="img" aria-label="Tasa de retorno documentada de envases por mes"></div>
+  <div class="extra" id="x-env-mes"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-env-mes"></div></details>
+  <aside class="hilo" id="h-env-mes"></aside>
+  <footer class="fuente">Fuente: h11_balance_envases_por_mes.csv</footer>
+</article>
+<article class="card " id="c-env-tipo" data-ids="C11.1">
+  <header class="card-head">
+    <h3>Retorno por tipo de envase (CJ)</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-env-tipo" style="height:340px" role="img" aria-label="Retorno por tipo de envase (CJ)"></div>
+  <div class="extra" id="x-env-tipo"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-env-tipo"></div></details>
+  <aside class="hilo" id="h-env-tipo"></aside>
+  <footer class="fuente">Fuente: h11_balance_envases_por_tipo.csv</footer>
+</article>
+<article class="card " id="c-dev" data-ids="C11.1 B7">
+  <header class="card-head">
+    <h3>Devoluciones sobre la venta efectiva</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-dev" style="height:340px" role="img" aria-label="Devoluciones sobre la venta efectiva"></div>
+  <div class="extra" id="x-dev"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-dev"></div></details>
+  <aside class="hilo" id="h-dev"></aside>
+  <footer class="fuente">Fuente: h11_tasa_devolucion_total_por_anio.csv</footer>
+</article></div></section><section class="bloque"><h2>Nivel de servicio</h2><div class="grid">
+<article class="card ancho" id="c-causas" data-ids="C12.1">
+  <header class="card-head">
+    <h3>% de pedidos afectados por causa (MOT ANU)</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado · Supuesto (agrupación)</span></div>
+  </header>
+  
+  <div class="plot" id="g-causas" style="height:340px" role="img" aria-label="% de pedidos afectados por causa (MOT ANU)"></div>
+  <div class="extra" id="x-causas"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-causas"></div></details>
+  <aside class="hilo" id="h-causas"></aside>
+  <footer class="fuente">Fuente: h12_incidencias_por_causa.csv</footer>
+</article>
+<article class="card " id="c-srv" data-ids="C12.1">
+  <header class="card-head">
+    <h3>Pedidos con incidencia de servicio por año</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-srv" style="height:340px" role="img" aria-label="Pedidos con incidencia de servicio por año"></div>
+  <div class="extra" id="x-srv"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-srv"></div></details>
+  <aside class="hilo" id="h-srv"></aside>
+  <footer class="fuente">Fuente: h12_incidencias_resumen_por_anio.csv</footer>
+</article></div></section></main>
+<footer class="pie">Generado el <span id="generado"></span> con build_dashboard.py · Datos: CSV del proyecto (Grupo 6, DataRoute Lab) · Etiquetas: Dato real / Resultado calculado / Supuesto / Propuesta de diseño</footer>
+<script src="assets/app.js"></script></body></html>

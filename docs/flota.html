@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AndesBev · Flota y transporte</title>
+<meta name="description" content="Dashboard de diagnóstico de la cadena de suministro AndesBev SpA, piloto Coquimbo-La Serena.">
+<link rel="stylesheet" href="assets/app.css"><script src="data/datos.js"></script><script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script></head>
+<body data-modo="sitio" data-page="flota">
+<header class="top"><div class="marca"><strong>AndesBev SpA</strong><span>Diagnóstico · Piloto Coquimbo–La Serena</span></div>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+<nav id="nav"><a href="index.html" data-nav="index">Inicio</a><a href="demanda.html" data-nav="demanda">Demanda</a><a href="portafolio.html" data-nav="portafolio">Portafolio</a><a href="clientes.html" data-nav="clientes">Clientes y territorio</a><a href="flota.html" data-nav="flota">Flota y transporte</a><a href="calidad.html" data-nav="calidad">Calidad de datos y logística inversa</a><a href="diseno.html" data-nav="diseno">Diseño</a></nav></header>
+<div class="barra"><div class="filtros" role="group" aria-label="Filtros globales">
+  <label>Año <select id="f-anio"><option value="Todos">Todos</option><option>2023</option><option>2024</option><option>2025</option></select></label>
+  <label>Categoría <select id="f-cat"><option value="Todas">Todas</option><option>Gaseosas</option><option>Cervezas</option><option>Aguas</option><option>Piscos y Licores</option><option>Vinos</option></select></label></div><p class="alcance" id="alcance"></p></div>
+<main class="pagina" data-page="flota" id="p-flota"><h1>Flota y transporte</h1><section class="bloque"><h2>Uso de la flota observada</h2><div class="grid">
+<article class="card " id="c-vueltas" data-ids="B11 C10.1">
+  <header class="card-head">
+    <h3>Vueltas por camión por día</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-anio">Filtro año</span></div>
+  </header>
+  
+  <div class="plot" id="g-vueltas" style="height:340px" role="img" aria-label="Vueltas por camión por día"></div>
+  <div class="extra" id="x-vueltas"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-vueltas"></div></details>
+  <aside class="hilo" id="h-vueltas"></aside>
+  <footer class="fuente">Fuente: base/viaje_cliente.csv</footer>
+</article>
+<article class="card " id="c-vcamion" data-ids="B20">
+  <header class="card-head">
+    <h3>Vueltas promedio por día, por camión (top 15)</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-anio">Filtro año</span></div>
+  </header>
+  
+  <div class="plot" id="g-vcamion" style="height:340px" role="img" aria-label="Vueltas promedio por día, por camión (top 15)"></div>
+  <div class="extra" id="x-vcamion"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-vcamion"></div></details>
+  <aside class="hilo" id="h-vcamion"></aside>
+  <footer class="fuente">Fuente: base/viaje_cliente.csv</footer>
+</article>
+<article class="card ancho" id="c-phist" data-ids="C10.1 B10.1">
+  <header class="card-head">
+    <h3>Pallets por viaje</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-anio">Filtro año</span></div>
+  </header>
+  <p class="nota">Viaje = (fecha, camión, viaje). La capacidad nominal no está en los datos: P50 y P90 son capacidades observadas.</p>
+  <div class="plot" id="g-phist" style="height:340px" role="img" aria-label="Pallets por viaje"></div>
+  <div class="extra" id="x-phist"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-phist"></div></details>
+  <aside class="hilo" id="h-phist"></aside>
+  <footer class="fuente">Fuente: base/viaje_cliente.csv</footer>
+</article></div></section><section class="bloque"><h2>Capacidad y camiones</h2><div class="grid">
+<article class="card " id="c-cap" data-ids="C10.1">
+  <header class="card-head">
+    <h3>Capacidad observada por viaje</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  
+  <div class="extra" id="x-cap"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-cap"></div></details>
+  <aside class="hilo" id="h-cap"></aside>
+  <footer class="fuente">Fuente: h10_capacidad_observada_por_viaje.csv</footer>
+</article>
+<article class="card " id="c-tramos" data-ids="C10.1">
+  <header class="card-head">
+    <h3>Peso por viaje según tramo de pallets</h3>
+    <div class="badges"><span class="badge badge-supuesto">Supuesto (unidad kg)</span></div>
+  </header>
+  
+  <div class="plot" id="g-tramos" style="height:340px" role="img" aria-label="Peso por viaje según tramo de pallets"></div>
+  <div class="extra" id="x-tramos"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-tramos"></div></details>
+  <aside class="hilo" id="h-tramos"></aside>
+  <footer class="fuente">Fuente: h10_peso_por_tramo_de_pallets_viaje.csv</footer>
+</article>
+<article class="card " id="c-camiones" data-ids="B10.1 C10.1">
+  <header class="card-head">
+    <h3>Camiones necesarios: modelo vs real</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado · Supuesto</span></div>
+  </header>
+  <p class="nota">Supuesto: capacidad del camión = percentil observado de pallets por viaje. No es un dimensionamiento.</p>
+  <div class="plot" id="g-camiones" style="height:340px" role="img" aria-label="Camiones necesarios: modelo vs real"></div>
+  <div class="extra" id="x-camiones"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-camiones"></div></details>
+  <aside class="hilo" id="h-camiones"></aside>
+  <footer class="fuente">Fuente: b10_estimacion_flota_actual_vs_corregido.csv</footer>
+</article>
+<article class="card ancho" id="c-top" data-ids="B20">
+  <header class="card-head">
+    <h3>Top 25 viajes por pallets</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  <p class="nota">Agrupación por camión + viaje; el orden de las filas de venta no es la secuencia de visita, por eso no se dibujan rutas.</p>
+  
+  <div class="extra" id="x-top"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-top"></div></details>
+  <aside class="hilo" id="h-top"></aside>
+  <footer class="fuente">Fuente: base/viaje_cliente.csv</footer>
+</article></div></section></main>
+<footer class="pie">Generado el <span id="generado"></span> con build_dashboard.py · Datos: CSV del proyecto (Grupo 6, DataRoute Lab) · Etiquetas: Dato real / Resultado calculado / Supuesto / Propuesta de diseño</footer>
+<script src="assets/app.js"></script></body></html>

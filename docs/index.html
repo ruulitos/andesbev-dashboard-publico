@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AndesBev · Inicio</title>
+<meta name="description" content="Dashboard de diagnóstico de la cadena de suministro AndesBev SpA, piloto Coquimbo-La Serena.">
+<link rel="stylesheet" href="assets/app.css"><script src="data/datos.js"></script><script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script></head>
+<body data-modo="sitio" data-page="index">
+<header class="top"><div class="marca"><strong>AndesBev SpA</strong><span>Diagnóstico · Piloto Coquimbo–La Serena</span></div>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+<nav id="nav"><a href="index.html" data-nav="index">Inicio</a><a href="demanda.html" data-nav="demanda">Demanda</a><a href="portafolio.html" data-nav="portafolio">Portafolio</a><a href="clientes.html" data-nav="clientes">Clientes y territorio</a><a href="flota.html" data-nav="flota">Flota y transporte</a><a href="calidad.html" data-nav="calidad">Calidad de datos y logística inversa</a><a href="diseno.html" data-nav="diseno">Diseño</a></nav></header>
+<div class="barra"><div class="filtros" role="group" aria-label="Filtros globales">
+  <label>Año <select id="f-anio"><option value="Todos">Todos</option><option>2023</option><option>2024</option><option>2025</option></select></label>
+  <label>Categoría <select id="f-cat"><option value="Todas">Todas</option><option>Gaseosas</option><option>Cervezas</option><option>Aguas</option><option>Piscos y Licores</option><option>Vinos</option></select></label></div><p class="alcance" id="alcance"></p></div>
+<main class="pagina" data-page="index" id="p-index"><h1>Inicio</h1>
+<section class="bloque"><h2>Indicadores clave</h2>
+<p class="intro">Promedios sobre días con actividad. Los indicadores de demanda responden a los filtros de año y categoría; el resto es 2023-2025.</p>
+<div class="kpis" id="kpis"></div></section>
+<section class="bloque"><h2>Buscar cliente o producto</h2>
+<div class="buscador">
+  <label for="q">ID de cliente o código de producto</label>
+  <div class="buscador-fila"><input id="q" type="search" autocomplete="off" placeholder="ID de cliente o código de producto"><button id="q-btn" type="button">Buscar</button></div>
+  <div id="q-sug" class="sugerencias"></div>
+  <div id="ficha" class="ficha" aria-live="polite"></div>
+</div></section>
+<section class="bloque"><h2>Hilo conductor</h2><div class="grid">
+<article class="card " id="c-hilo-inicio" data-ids="C2.1 B1.1 B16.1 C14.1">
+  <header class="card-head">
+    <h3>Por qué la base es el alcance corregido</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  <p class="nota">Comparación de cifras clave entre el alcance anterior (filtro por comuna de facturación) y el corregido (punto de entrega).</p>
+  
+  <div class="extra" id="x-hilo-inicio"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-hilo-inicio"></div></details>
+  <aside class="hilo" id="h-hilo-inicio"></aside>
+  <footer class="fuente">Fuente: comparacion_cifras_clave_actual_vs_corregido.csv; bitácora</footer>
+</article></div></section>
+<section class="bloque"><h2>Datos no disponibles</h2><div class="grid"><article class="card ancho"><div id="no-disp"></div></article></div></section></main>
+<footer class="pie">Generado el <span id="generado"></span> con build_dashboard.py · Datos: CSV del proyecto (Grupo 6, DataRoute Lab) · Etiquetas: Dato real / Resultado calculado / Supuesto / Propuesta de diseño</footer>
+<script src="assets/app.js"></script></body></html>

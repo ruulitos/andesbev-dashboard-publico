@@ -1,0 +1,14 @@
+# Datos del proyecto: NO se suben a GitHub (pesan varios GB y contienen datos de clientes).
+# El sitio publicado (docs/) ya trae los datos agregados que necesita.
+datos_raw/
+datos_procesados/
+*.csv
+*.xlsx
+*.pbix
+
+# Versión "todo en uno" para entrega offline (se comparte por otro medio)
+dist/
+
+# Entorno local
+__pycache__/
+.claude/

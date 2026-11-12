@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AndesBev · Portafolio</title>
+<meta name="description" content="Dashboard de diagnóstico de la cadena de suministro AndesBev SpA, piloto Coquimbo-La Serena.">
+<link rel="stylesheet" href="assets/app.css"><script src="data/datos.js"></script><script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script></head>
+<body data-modo="sitio" data-page="portafolio">
+<header class="top"><div class="marca"><strong>AndesBev SpA</strong><span>Diagnóstico · Piloto Coquimbo–La Serena</span></div>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+<nav id="nav"><a href="index.html" data-nav="index">Inicio</a><a href="demanda.html" data-nav="demanda">Demanda</a><a href="portafolio.html" data-nav="portafolio">Portafolio</a><a href="clientes.html" data-nav="clientes">Clientes y territorio</a><a href="flota.html" data-nav="flota">Flota y transporte</a><a href="calidad.html" data-nav="calidad">Calidad de datos y logística inversa</a><a href="diseno.html" data-nav="diseno">Diseño</a></nav></header>
+<div class="barra"><div class="filtros" role="group" aria-label="Filtros globales">
+  <label>Año <select id="f-anio"><option value="Todos">Todos</option><option>2023</option><option>2024</option><option>2025</option></select></label>
+  <label>Categoría <select id="f-cat"><option value="Todas">Todas</option><option>Gaseosas</option><option>Cervezas</option><option>Aguas</option><option>Piscos y Licores</option><option>Vinos</option></select></label></div><p class="alcance" id="alcance"></p></div>
+<main class="pagina" data-page="portafolio" id="p-portafolio"><h1>Portafolio</h1><section class="bloque"><h2>Concentración</h2><div class="grid">
+<article class="card " id="c-abc-cat" data-ids="C4.1">
+  <header class="card-head">
+    <h3>ABC por categoría (% del volumen)</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-abc-cat" style="height:340px" role="img" aria-label="ABC por categoría (% del volumen)"></div>
+  <div class="extra" id="x-abc-cat"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-abc-cat"></div></details>
+  <aside class="hilo" id="h-abc-cat"></aside>
+  <footer class="fuente">Fuente: insumos/abc_xyz_base_mensual.csv</footer>
+</article>
+<article class="card " id="c-cv-cat" data-ids="C4.1 A2">
+  <header class="card-head">
+    <h3>Variabilidad mensual (CV) por categoría, con y sin 2025</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-cv-cat" style="height:340px" role="img" aria-label="Variabilidad mensual (CV) por categoría, con y sin 2025"></div>
+  <div class="extra" id="x-cv-cat"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-cv-cat"></div></details>
+  <aside class="hilo" id="h-cv-cat"></aside>
+  <footer class="fuente">Fuente: insumos/abc_xyz_base_mensual.csv</footer>
+</article></div></section><section class="bloque"><h2>Matriz ABC × XYZ (Gaseosas y Cervezas)</h2><p class=intro>La matriz oficial cubre solo las categorías A (Gaseosas y Cervezas); Aguas, Piscos y Licores y Vinos quedan fuera (C4.1).</p><div class="grid">
+<article class="card " id="c-mz-n" data-ids="C4.1">
+  <header class="card-head">
+    <h3>Cantidad de SKU</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  <div class="plot" id="g-mz-n" style="height:300px" role="img" aria-label="Cantidad de SKU"></div>
+  <div class="extra" id="x-mz-n"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-mz-n"></div></details>
+  <aside class="hilo" id="h-mz-n"></aside>
+  <footer class="fuente">Fuente: insumos/matriz_abc_xyz_sku_detalle.csv</footer>
+</article>
+<article class="card " id="c-mz-v" data-ids="C4.1">
+  <header class="card-head">
+    <h3>% del volumen de la matriz</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  <div class="plot" id="g-mz-v" style="height:300px" role="img" aria-label="% del volumen de la matriz"></div>
+  <div class="extra" id="x-mz-v"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-mz-v"></div></details>
+  <aside class="hilo" id="h-mz-v"></aside>
+  <footer class="fuente">Fuente: insumos/matriz_abc_xyz_sku_detalle.csv</footer>
+</article>
+<article class="card ancho" id="c-az" data-ids="A2 C4.1">
+  <header class="card-head">
+    <h3>SKU críticos A-Z (alto volumen, alta variabilidad)</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  
+  <div class="extra" id="x-az"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-az"></div></details>
+  <aside class="hilo" id="h-az"></aside>
+  <footer class="fuente">Fuente: insumos/matriz_abc_xyz_sku_detalle.csv</footer>
+</article></div></section><section class="bloque"><h2>Atributos físicos y vida útil</h2><div class="grid">
+<article class="card " id="c-cola" data-ids="C5.1">
+  <header class="card-head">
+    <h3>Cola C-Z con vida útil corta (≤ 180 días)</h3>
+    <div class="badges"><span class="badge badge-supuesto">Supuesto (umbral)</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  <div class="plot" id="g-cola" style="height:340px" role="img" aria-label="Cola C-Z con vida útil corta (≤ 180 días)"></div>
+  <div class="extra" id="x-cola"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-cola"></div></details>
+  <aside class="hilo" id="h-cola"></aside>
+  <footer class="fuente">Fuente: h05_resumen_cola_cz_vida_util.csv</footer>
+</article>
+<article class="card " id="c-espacio" data-ids="C6.1">
+  <header class="card-head">
+    <h3>Pallets equivalentes por caja (P10-P50-P90)</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  <div class="plot" id="g-espacio" style="height:340px" role="img" aria-label="Pallets equivalentes por caja (P10-P50-P90)"></div>
+  <div class="extra" id="x-espacio"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-espacio"></div></details>
+  <aside class="hilo" id="h-espacio"></aside>
+  <footer class="fuente">Fuente: h06_dispersion_pallet_eq_por_caja_categoria.csv</footer>
+</article>
+<article class="card " id="c-peso" data-ids="C6.1">
+  <header class="card-head">
+    <h3>kg por pallet equivalente (P10-P50-P90)</h3>
+    <div class="badges"><span class="badge badge-supuesto">Supuesto (unidad kg)</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  <div class="plot" id="g-peso" style="height:340px" role="img" aria-label="kg por pallet equivalente (P10-P50-P90)"></div>
+  <div class="extra" id="x-peso"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-peso"></div></details>
+  <aside class="hilo" id="h-peso"></aside>
+  <footer class="fuente">Fuente: h06_dispersion_peso_por_caja_y_pallet_categoria.csv</footer>
+</article>
+<article class="card " id="c-cpp" data-ids="B19">
+  <header class="card-head">
+    <h3>Cajas por pallet y vida útil según maestra</h3>
+    <div class="badges"><span class="badge badge-dato">Dato real</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  <p class="nota">Vida útil 999/9999 es un valor centinela (indefinida o no informada): se muestra la mediana.</p>
+  <div class="plot" id="g-cpp" style="height:340px" role="img" aria-label="Cajas por pallet y vida útil según maestra"></div>
+  <div class="extra" id="x-cpp"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-cpp"></div></details>
+  <aside class="hilo" id="h-cpp"></aside>
+  <footer class="fuente">Fuente: auditoria_cajas_pallet_por_categoria_completa.csv; auditoria_vida_util_por_categoria_completa.csv</footer>
+</article></div></section></main>
+<footer class="pie">Generado el <span id="generado"></span> con build_dashboard.py · Datos: CSV del proyecto (Grupo 6, DataRoute Lab) · Etiquetas: Dato real / Resultado calculado / Supuesto / Propuesta de diseño</footer>
+<script src="assets/app.js"></script></body></html>

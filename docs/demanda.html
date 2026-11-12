@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AndesBev · Demanda</title>
+<meta name="description" content="Dashboard de diagnóstico de la cadena de suministro AndesBev SpA, piloto Coquimbo-La Serena.">
+<link rel="stylesheet" href="assets/app.css"><script src="data/datos.js"></script><script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script></head>
+<body data-modo="sitio" data-page="demanda">
+<header class="top"><div class="marca"><strong>AndesBev SpA</strong><span>Diagnóstico · Piloto Coquimbo–La Serena</span></div>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+<nav id="nav"><a href="index.html" data-nav="index">Inicio</a><a href="demanda.html" data-nav="demanda">Demanda</a><a href="portafolio.html" data-nav="portafolio">Portafolio</a><a href="clientes.html" data-nav="clientes">Clientes y territorio</a><a href="flota.html" data-nav="flota">Flota y transporte</a><a href="calidad.html" data-nav="calidad">Calidad de datos y logística inversa</a><a href="diseno.html" data-nav="diseno">Diseño</a></nav></header>
+<div class="barra"><div class="filtros" role="group" aria-label="Filtros globales">
+  <label>Año <select id="f-anio"><option value="Todos">Todos</option><option>2023</option><option>2024</option><option>2025</option></select></label>
+  <label>Categoría <select id="f-cat"><option value="Todas">Todas</option><option>Gaseosas</option><option>Cervezas</option><option>Aguas</option><option>Piscos y Licores</option><option>Vinos</option></select></label></div><p class="alcance" id="alcance"></p></div>
+<main class="pagina" data-page="demanda" id="p-demanda"><h1>Demanda</h1><section class="bloque"><h2>Evolución 2023-2025</h2><div class="grid">
+<article class="card ancho" id="c-mensual" data-ids="C2.1 B1.1">
+  <header class="card-head">
+    <h3>Pallets por mes y año</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  <div class="plot" id="g-mensual" style="height:340px" role="img" aria-label="Pallets por mes y año"></div>
+  <div class="extra" id="x-mensual"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-mensual"></div></details>
+  <aside class="hilo" id="h-mensual"></aside>
+  <footer class="fuente">Fuente: agregados/dia.csv (venta efectiva)</footer>
+</article>
+<article class="card " id="c-trimestral" data-ids="C2.1">
+  <header class="card-head">
+    <h3>Pallets por trimestre y año</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  <div class="plot" id="g-trimestral" style="height:340px" role="img" aria-label="Pallets por trimestre y año"></div>
+  <div class="extra" id="x-trimestral"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-trimestral"></div></details>
+  <aside class="hilo" id="h-trimestral"></aside>
+  <footer class="fuente">Fuente: agregados/dia.csv</footer>
+</article>
+<article class="card " id="c-dow" data-ids="B4">
+  <header class="card-head">
+    <h3>Promedio de pallets por día de la semana</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-anio">Filtro año</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  
+  <div class="plot" id="g-dow" style="height:340px" role="img" aria-label="Promedio de pallets por día de la semana"></div>
+  <div class="extra" id="x-dow"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-dow"></div></details>
+  <aside class="hilo" id="h-dow"></aside>
+  <footer class="fuente">Fuente: agregados/dia.csv</footer>
+</article></div></section><section class="bloque"><h2>Variabilidad diaria</h2><div class="grid">
+<article class="card ancho" id="c-diaria" data-ids="C2.1 B4">
+  <header class="card-head">
+    <h3>Serie diaria con percentiles</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-anio">Filtro año</span><span class="chip chip-cat">Filtro categoría</span></div>
+  </header>
+  <p class="nota">Líneas horizontales: P50, P90 y P95 de los días con actividad del filtro elegido.</p>
+  <div class="plot" id="g-diaria" style="height:380px" role="img" aria-label="Serie diaria con percentiles"></div>
+  <div class="extra" id="x-diaria"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-diaria"></div></details>
+  <aside class="hilo" id="h-diaria"></aside>
+  <footer class="fuente">Fuente: agregados/dia.csv</footer>
+</article>
+<article class="card ancho" id="c-finmes" data-ids="B18 B20">
+  <header class="card-head">
+    <h3>Último día del mes vs. mismo día de la semana del resto del mes</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  <p class="nota">Razón &gt; 1: el cierre de mes supera a un día comparable del mismo mes.</p>
+  <div class="plot" id="g-finmes" style="height:340px" role="img" aria-label="Último día del mes vs. mismo día de la semana del resto del mes"></div>
+  <div class="extra" id="x-finmes"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-finmes"></div></details>
+  <aside class="hilo" id="h-finmes"></aside>
+  <footer class="fuente">Fuente: agregados/dia.csv (lógica de investigar_pico_fin_de_mes.py)</footer>
+</article></div></section><section class="bloque"><h2>Estacionalidad y mix</h2><div class="grid">
+<article class="card ancho" id="c-ie" data-ids="C3.1 B2.1">
+  <header class="card-head">
+    <h3>Índice estacional por categoría (1 = mes promedio)</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-anio">Filtro año</span></div>
+  </header>
+  
+  <div class="plot" id="g-ie" style="height:300px" role="img" aria-label="Índice estacional por categoría (1 = mes promedio)"></div>
+  <div class="extra" id="x-ie"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-ie"></div></details>
+  <aside class="hilo" id="h-ie"></aside>
+  <footer class="fuente">Fuente: h03_indice_estacional_categoria_anio_mes.csv</footer>
+</article>
+<article class="card " id="c-peaks" data-ids="C3.1 B2.1">
+  <header class="card-head">
+    <h3>Septiembre y diciembre por categoría</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span><span class="chip chip-anio">Filtro año</span></div>
+  </header>
+  
+  <div class="plot" id="g-peaks" style="height:340px" role="img" aria-label="Septiembre y diciembre por categoría"></div>
+  <div class="extra" id="x-peaks"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-peaks"></div></details>
+  <aside class="hilo" id="h-peaks"></aside>
+  <footer class="fuente">Fuente: h03_mes_peak_por_categoria_anio.csv</footer>
+</article>
+<article class="card " id="c-mix" data-ids="C3.1">
+  <header class="card-head">
+    <h3>Participación de cada categoría por año</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-mix" style="height:340px" role="img" aria-label="Participación de cada categoría por año"></div>
+  <div class="extra" id="x-mix"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-mix"></div></details>
+  <aside class="hilo" id="h-mix"></aside>
+  <footer class="fuente">Fuente: h03_mix_categorias_por_anio.csv</footer>
+</article></div></section><section class="bloque"><h2>¿Hubo quiebre en 2025?</h2><div class="grid">
+<article class="card ancho" id="c-alcance" data-ids="B1.1 C2.1">
+  <header class="card-head">
+    <h3>Variación 2025 vs 2024 por mes: alcance anterior vs corregido</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  <p class="nota">El alcance anterior filtraba por comuna de facturación y dejaba fuera a clientes que desde mayo-2025 se facturan en la RM.</p>
+  <div class="plot" id="g-alcance" style="height:340px" role="img" aria-label="Variación 2025 vs 2024 por mes: alcance anterior vs corregido"></div>
+  <div class="extra" id="x-alcance"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-alcance"></div></details>
+  <aside class="hilo" id="h-alcance"></aside>
+  <footer class="fuente">Fuente: comparacion_pallets_mensuales_2024_2025.csv</footer>
+</article></div></section></main>
+<footer class="pie">Generado el <span id="generado"></span> con build_dashboard.py · Datos: CSV del proyecto (Grupo 6, DataRoute Lab) · Etiquetas: Dato real / Resultado calculado / Supuesto / Propuesta de diseño</footer>
+<script src="assets/app.js"></script></body></html>

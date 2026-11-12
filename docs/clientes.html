@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AndesBev · Clientes y territorio</title>
+<meta name="description" content="Dashboard de diagnóstico de la cadena de suministro AndesBev SpA, piloto Coquimbo-La Serena.">
+<link rel="stylesheet" href="assets/app.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"><script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script><script src="https://cdn.jsdelivr.net/npm/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script><script src="data/datos.js"></script><script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js"></script></head>
+<body data-modo="sitio" data-page="clientes">
+<header class="top"><div class="marca"><strong>AndesBev SpA</strong><span>Diagnóstico · Piloto Coquimbo–La Serena</span></div>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menú</button>
+<nav id="nav"><a href="index.html" data-nav="index">Inicio</a><a href="demanda.html" data-nav="demanda">Demanda</a><a href="portafolio.html" data-nav="portafolio">Portafolio</a><a href="clientes.html" data-nav="clientes">Clientes y territorio</a><a href="flota.html" data-nav="flota">Flota y transporte</a><a href="calidad.html" data-nav="calidad">Calidad de datos y logística inversa</a><a href="diseno.html" data-nav="diseno">Diseño</a></nav></header>
+<div class="barra"><div class="filtros" role="group" aria-label="Filtros globales">
+  <label>Año <select id="f-anio"><option value="Todos">Todos</option><option>2023</option><option>2024</option><option>2025</option></select></label>
+  <label>Categoría <select id="f-cat"><option value="Todas">Todas</option><option>Gaseosas</option><option>Cervezas</option><option>Aguas</option><option>Piscos y Licores</option><option>Vinos</option></select></label></div><p class="alcance" id="alcance"></p></div>
+<main class="pagina" data-page="clientes" id="p-clientes"><h1>Clientes y territorio</h1><section class="bloque"><h2>Mapa de demanda</h2><div class="grid">
+<article class="card ancho" id="c-mapa" data-ids="C8.1">
+  <header class="card-head">
+    <h3>Clientes georreferenciados</h3>
+    <div class="badges"><span class="badge badge-dato">Dato real (coordenadas)</span><span class="chip chip-anio">Filtro año</span></div>
+  </header>
+  <p class="nota">Círculos: 5, 10, 20 y 50 km desde el centro de gravedad ponderado por pallets. No representan rutas.</p>
+  <div class="plot" id="g-mapa" style="height:520px" role="img" aria-label="Clientes georreferenciados"></div>
+  <div class="extra" id="x-mapa"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-mapa"></div></details>
+  <aside class="hilo" id="h-mapa"></aside>
+  <footer class="fuente">Fuente: h08_clientes_distancia_cg.csv; georeferencia_clientes_limpio.csv; insumos/clientes_perdidos_2025.csv</footer>
+</article>
+<article class="card " id="c-radios" data-ids="C8.1">
+  <header class="card-head">
+    <h3>% de volumen y de clientes por distancia al centro de gravedad</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-radios" style="height:340px" role="img" aria-label="% de volumen y de clientes por distancia al centro de gravedad"></div>
+  <div class="extra" id="x-radios"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-radios"></div></details>
+  <aside class="hilo" id="h-radios"></aside>
+  <footer class="fuente">Fuente: h08_volumen_clientes_por_radio_cg.csv</footer>
+</article>
+<article class="card " id="c-comunas" data-ids="C8.1">
+  <header class="card-head">
+    <h3>Volumen por comuna de la venta</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  <p class="nota">'Facturado fuera (…)' = clientes facturados en la RM con entrega en la región.</p>
+  <div class="plot" id="g-comunas" style="height:340px" role="img" aria-label="Volumen por comuna de la venta"></div>
+  <div class="extra" id="x-comunas"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-comunas"></div></details>
+  <aside class="hilo" id="h-comunas"></aside>
+  <footer class="fuente">Fuente: h08_desglose_por_comuna.csv</footer>
+</article></div></section><section class="bloque"><h2>Economía de entrega por segmento</h2><div class="grid">
+<article class="card " id="c-canales" data-ids="C7.1 B13 B14">
+  <header class="card-head">
+    <h3>% de volumen vs % de clientes por canal</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-canales" style="height:340px" role="img" aria-label="% de volumen vs % de clientes por canal"></div>
+  <div class="extra" id="x-canales"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-canales"></div></details>
+  <aside class="hilo" id="h-canales"></aside>
+  <footer class="fuente">Fuente: h07_economia_entrega_por_canal.csv</footer>
+</article>
+<article class="card " id="c-ppp" data-ids="C7.1">
+  <header class="card-head">
+    <h3>Pallets por pedido por canal</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-ppp" style="height:340px" role="img" aria-label="Pallets por pedido por canal"></div>
+  <div class="extra" id="x-ppp"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-ppp"></div></details>
+  <aside class="hilo" id="h-ppp"></aside>
+  <footer class="fuente">Fuente: h07_economia_entrega_por_canal.csv</footer>
+</article>
+<article class="card " id="c-frec" data-ids="B13 B17">
+  <header class="card-head">
+    <h3>Distribución de pedidos por cliente (3 años)</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-frec" style="height:340px" role="img" aria-label="Distribución de pedidos por cliente (3 años)"></div>
+  <div class="extra" id="x-frec"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-frec"></div></details>
+  <aside class="hilo" id="h-frec"></aside>
+  <footer class="fuente">Fuente: insumos/frecuencia_tamano_pedido_por_cliente.csv</footer>
+</article>
+<article class="card " id="c-tam" data-ids="B13">
+  <header class="card-head">
+    <h3>Distribución del tamaño promedio de pedido</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-tam" style="height:340px" role="img" aria-label="Distribución del tamaño promedio de pedido"></div>
+  <div class="extra" id="x-tam"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-tam"></div></details>
+  <aside class="hilo" id="h-tam"></aside>
+  <footer class="fuente">Fuente: insumos/frecuencia_tamano_pedido_por_cliente.csv</footer>
+</article>
+<article class="card ancho" id="c-ventanas" data-ids="C13.1">
+  <header class="card-head">
+    <h3>Local cerrado / fuera de horario por segmento</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-ventanas" style="height:340px" role="img" aria-label="Local cerrado / fuera de horario por segmento"></div>
+  <div class="extra" id="x-ventanas"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-ventanas"></div></details>
+  <aside class="hilo" id="h-ventanas"></aside>
+  <footer class="fuente">Fuente: h13_ventana_horaria_por_segmento.csv</footer>
+</article></div></section><section class="bloque"><h2>Variación 2024-2025</h2><div class="grid">
+<article class="card " id="c-var-cat" data-ids="B1.1 C3.1">
+  <header class="card-head">
+    <h3>Variación de pallets 2025 vs 2024 por categoría</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-var-cat" style="height:340px" role="img" aria-label="Variación de pallets 2025 vs 2024 por categoría"></div>
+  <div class="extra" id="x-var-cat"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-var-cat"></div></details>
+  <aside class="hilo" id="h-var-cat"></aside>
+  <footer class="fuente">Fuente: agregados/dia.csv</footer>
+</article>
+<article class="card " id="c-decil" data-ids="B15.1 B16.1">
+  <header class="card-head">
+    <h3>Tasa de clientes perdidos 2025 por decil de volumen</h3>
+    <div class="badges"><span class="badge badge-resultado">Resultado calculado</span></div>
+  </header>
+  
+  <div class="plot" id="g-decil" style="height:340px" role="img" aria-label="Tasa de clientes perdidos 2025 por decil de volumen"></div>
+  <div class="extra" id="x-decil"></div>
+  <details class="tabla-det" ><summary>Ver tabla de datos</summary><div class="tabla" id="t-decil"></div></details>
+  <aside class="hilo" id="h-decil"></aside>
+  <footer class="fuente">Fuente: b15_tasa_perdida_por_decil_actual_vs_corregido.csv</footer>
+</article></div></section></main>
+<footer class="pie">Generado el <span id="generado"></span> con build_dashboard.py · Datos: CSV del proyecto (Grupo 6, DataRoute Lab) · Etiquetas: Dato real / Resultado calculado / Supuesto / Propuesta de diseño</footer>
+<script src="assets/app.js"></script></body></html>
