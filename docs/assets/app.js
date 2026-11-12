@@ -48,9 +48,13 @@
     const el = destino || document.getElementById("t-" + cid); if (!el) return;
     cols = cols || (rows[0] ? Object.keys(rows[0]) : []);
     const num = (v) => typeof v === "number";
-    const fmt = (v) => num(v) ? (Number.isInteger(v) ? nf(v) : nf(v, Math.abs(v) < 10 ? 3 : 1)) : esc(v === null ? "Dato no disponible" : (v === true ? "Sí" : v === false ? "No" : v));
+    // Vacío ≠ dato faltante: una nota vacía queda en blanco; un % o tasa sin base (división por 0) o un
+    // paso de la cascada que no se mide en líneas/cantidad es "No aplica". Solo lo demás es "Dato no disponible".
+    const vacio = (c, r) => /^nota/i.test(c) ? ""
+      : (/pct|tasa/i.test(c) || ("paso" in r && /^(lineas|cantidad)$/.test(c))) ? "No aplica" : "Dato no disponible";
+    const fmt = (v, c, r) => num(v) ? (/pct|tasa/i.test(c) ? nf(v, 2) : Number.isInteger(v) ? nf(v) : nf(v, Math.abs(v) < 10 ? 3 : 1)) : esc(v === null || v === undefined ? vacio(c, r) : (v === true ? "Sí" : v === false ? "No" : v));
     el.innerHTML = `<div class="tabla-wrap"><table><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${
-      rows.map((r) => `<tr>${cols.map((c) => `<td class="${num(r[c]) ? "num" : ""}">${fmt(r[c])}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+      rows.map((r) => `<tr>${cols.map((c) => `<td class="${num(r[c]) ? "num" : ""}">${fmt(r[c], c, r)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
   }
 
   // ---------------- hilo conductor desde la bitácora ----------------
